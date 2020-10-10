@@ -1,6 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="javax.print.URIException"%>
-<%@page import="controller.MemberDTO"%>
+<%@page import="com.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -55,6 +55,7 @@ background-color: yellow
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav ">
           <li><a href="./main.jsp" title="">Home</a></li>
+
           <li><a href="./works.html" title="">Board</a></li>
           <li><a href="./about.html" title="">about</a></li>
           <li><a href="./Login_form.jsp" title="">Login</a></li>

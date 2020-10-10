@@ -1,4 +1,4 @@
-package com;
+package com.controller;
 
 import java.io.IOException;
 
@@ -21,8 +21,8 @@ public class JoinService extends HttpServlet {
 		String member_addr = request.getParameter("member_addr");
 		String member_tel = request.getParameter("member_tel");
 		
-		controller.MemberDTO dto = new controller.MemberDTO(member_id, member_pw,member_addr,member_tel);
-		controller.MemberDAO dao = new controller.MemberDAO();
+		com.model.MemberDTO dto = new com.model.MemberDTO(member_id, member_pw,member_addr,member_tel);
+		com.model.MemberDAO dao = new com.model.MemberDAO();
 		int cnt = dao.join(dto);
 		
 		if(cnt > 0) {

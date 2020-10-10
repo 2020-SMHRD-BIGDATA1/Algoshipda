@@ -1,4 +1,4 @@
-package controller;
+package com.model;
 
 public class MemberDTO {
 
