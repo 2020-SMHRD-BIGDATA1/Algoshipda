@@ -73,7 +73,7 @@ public class MemberDAO {
 		getConnection();
 		
 		try {
-			String sql = "SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ?";
+			String sql = "SELECT * FROM MEMBERS WHERE member_id = ? AND member_pw = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getMember_id());
 			psmt.setString(2, dto.getMember_pw());

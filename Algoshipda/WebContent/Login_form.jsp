@@ -46,17 +46,17 @@
 <div class="cont">
   <div class="form sign-in">
     <h2>어서와 여기는처음이지?</h2>
+   <form method="post" action="LoginService">
     <label>
       <span>ID</span>
-      <input type="text" name= />
+      <input type="text" name="member_id" value="" />
     </label>
     <label>
       <span>Password</span>
-      <input type="password" />
+      <input type="password" name="member_pw" value=""/>
     </label>
-    
-    <button type="submit" class="submit">Login</button>
-    
+    <button type="submit" class="btn" value="">Login</button>
+    </form>
   </div>
   <div class="sub-cont">
     <div class="img">
@@ -71,16 +71,6 @@
     </div>
     <div class="form sign-up">
       <h2>여기도 글</h2>
-      
-      <label>
-        <span>Email</span>
-        <input type="text" />
-      </label>
-      <label>
-        <span>Password</span>
-        <input type="password" />
-      </label>
-     
     </div>
   </div>
 </div>
