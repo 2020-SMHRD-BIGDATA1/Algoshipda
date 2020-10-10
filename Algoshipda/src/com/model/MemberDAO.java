@@ -66,7 +66,33 @@ public class MemberDAO {
 
 		return cnt;
 	}
-	
+	public boolean idCheck(String member_id) {
+		boolean check = false;
+
+		getConnection();
+		try {
+			
+			String sql = "select member_id from Members where member_id=?";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, member_id);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				check = true;
+			} else {
+				check = false;
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return check;
+	}
 	public MemberDTO login(MemberDTO dto) {
 		MemberDTO info = null;
 		

@@ -22,8 +22,36 @@
 <link href="./assets/favicon.ico" rel="icon">
 
 <title>Title page</title>
-
+<script src="jquery-3.5.1.min.js"></script>
 <link href="./main.3f6952e4.css" rel="stylesheet">
+<script type="text/javascript">
+function idCheck() {
+    id = document.getElementById("in_id");
+    
+    $.ajax({
+         type :"get" ,  //get or post방식
+         //QueryString 방식으로 전송 : ?(시작) member_id(이름값) + member_id.value(실제 변수값)
+         url : "idCheck?member_id=" + member_id.value,  //서버 페이지의 주소
+         dataType : "text",  //주고받을 데이터의 유형
+         success : function(data) {
+            
+            p1 = document.getElementById("p1");
+            
+            if (data=='true') {
+             p1.innerHTML = "사용할 수 없는 아이디입니다.";
+          }else {
+             p1.innerHTML = "사용할 수 있는 아이디입니다.";
+          }
+         
+
+         },
+         error : function() {
+          //서버와 통신이 실패했을 때 후 처리
+             alert("호출실패");
+         }
+      });
+ } 
+</script>
 <style>
 #pp {
 	margin-left: 121px;
@@ -99,7 +127,7 @@
 						<div class="text-content">
 							<h1>
 								그 곳이 알고싶다<br> <span id="typed-strings"> <span>안녕
-										응지!</span> <span>응지는 바보</span> <span>잇츠미</span>
+										이지!</span> <span>이지차는 티볼리</span> <span>최고가 나의목표</span>
 								</span>
 							</h1>
 						</div>
