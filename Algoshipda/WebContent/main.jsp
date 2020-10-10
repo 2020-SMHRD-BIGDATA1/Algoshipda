@@ -1,3 +1,6 @@
+<%@page import="java.net.URLEncoder"%>
+<%@page import="javax.print.URIException"%>
+<%@page import="controller.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -39,6 +42,7 @@ background-color: yellow
 
 <!-- Add your content of header -->
 <header>
+
   <nav class="navbar  navbar-fixed-top navbar-inverse">
     <div class="container">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -50,12 +54,13 @@ background-color: yellow
 
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav ">
-          <li><a href="./index.jsp" title="">Home</a></li>
+          <li><a href="./main.jsp" title="">Home</a></li>
           <li><a href="./works.html" title="">Board</a></li>
-          <li><a href="./about.html" title="">Login</a></li>
+          <li><a href="./about.html" title="">about</a></li>
+          <li><a href="./Login_form.jsp" title="">Login</a></li>
+          <li><a href="./Join_form.jsp" title="">Join</a></li>
         </ul>
       </div> 
-
     </div>
   </nav>
 </header>
@@ -72,10 +77,7 @@ background-color: yellow
                   <span>ÀÀÁö´Â ¹Ùº¸</span>
                   <span>ÀÕÃ÷¹Ì</span>
                 </span>
-                <span id="typed"></span>
-              </h1>             
-              <p id="pp"><a href="" class="btn btn-default">Upload</a></p>
-              <p><a href="" class="btn btn-default">Cancle </a></p>         
+              </h1>                    
             </div>
           </div>
         </div>
@@ -94,11 +96,7 @@ background-color: yellow
 <script type="text/javascript" src="./main.70a66962.js"></script>
 
 <div class="half">
-
-
 </div>
-
-
 </body>
 
 </html>
