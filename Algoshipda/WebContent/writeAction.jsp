@@ -1,7 +1,6 @@
-<%@page import="bbs.Bbs"%>
-<%@page import="bbs.bbsDTO"%>
 <%@page import="bbs.bbsDAO"%>
 <%@page import="java.io.PrintWriter"%>
+<%@page import="com.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -11,9 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%
 			MemberDTO info = (MemberDTO) session.getAttribute("info");
-		%>
+		%> 
 	<%
 		String mem_mail = null;
 		if (session.getAttribute("mem_mail") != null) {
