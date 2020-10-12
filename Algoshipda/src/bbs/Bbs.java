@@ -1,10 +1,10 @@
 package bbs;
 
 public class Bbs {
-	
+
 	private int bbsID;
 	private String bbsTitle;
-	private String mem_mail;
+	private String member_id;
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
@@ -21,11 +21,11 @@ public class Bbs {
 	public void setBbsTitle(String bbsTitle) {
 		this.bbsTitle = bbsTitle;
 	}
-	public String getMem_mail() {
-		return mem_mail;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setMem_mail(String mem_mail) {
-		this.mem_mail = mem_mail;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	public String getBbsDate() {
 		return bbsDate;
@@ -45,7 +45,7 @@ public class Bbs {
 	public void setBbsAvailable(int bbsAvailable) {
 		this.bbsAvailable = bbsAvailable;
 	}
-		
+
 	
 	
 }

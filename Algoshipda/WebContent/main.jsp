@@ -92,10 +92,9 @@
 					<ul class="nav navbar-nav ">
 						<li><a href="./main.jsp" title="">Home</a></li>
 
-						<li><a href="./works.html" title="">Board</a></li>
-						<li><a href="./about.html" title="">about</a></li>
-
-
+						<li><a href="./board_cat.jsp" title="">Board</a></li>
+						
+					
 						<%
 							if (info == null) {
 						%>

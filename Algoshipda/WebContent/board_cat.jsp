@@ -1,6 +1,6 @@
 <%@page import="bbs.Bbs"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="bbs.bbsDAO"%>
+<%@page import="bbs.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,16 +24,7 @@
 <link href="./main.3f6952e4.css" rel="stylesheet"></head>
 
 <body class="">
-<%
-		String mem_mail = null;
-	if (session.getAttribute("mem_mail") != null) {
-		mem_mail = (String) session.getAttribute("mem_mail");
-	}
-	int pageNumber = 1;
-	if (request.getParameter("pageNumber") != null) {
-		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-	}
-	%>
+
 <!-- 
 <div id="site-border-left"></div>
 <div id="site-border-right"></div>
