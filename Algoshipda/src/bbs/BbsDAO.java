@@ -7,12 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class bbsDAO {
+public class BbsDAO {
 
 	private Connection conn;
-	private PreparedStatement psmt;
 	private ResultSet rs;
-	
+	private PreparedStatement psmt;
 	private void getConn() {
 	      try {
 	         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -47,8 +46,9 @@ public class bbsDAO {
 	   
 	   public String getDate() {
 		   getConn();
-		   String sql = "SELECT SYSDATE FROM dual";
+		   String sql = "SELECT NOW()";
 		   try {
+			   
 			   psmt = conn.prepareStatement(sql);
 			   rs = psmt.executeQuery();
 			   if(rs.next()) {
@@ -82,16 +82,17 @@ public class bbsDAO {
 		
 	   }
 	   
-	   public int write(String bbsTitle, String mem_mail, String bbsContent) {
+	   public int write(String bbsTitle, String member_id, String bbsContent) {
 		   getConn();
-		   String sql = "INSERT INTO BBS VALUES(?, ?, ?, sysdate, ?, ?)";
+		   String sql = "INSERT INTO BBS VALUES(?, ?, ?, ?, ?, ?)";
 		   try {
 			   PreparedStatement psmt = conn.prepareStatement(sql);
 			   psmt.setInt(1, getNext());
 			   psmt.setString(2, bbsTitle);
-			   psmt.setString(3, mem_mail);
-			   psmt.setString(4, bbsContent);
-			   psmt.setInt(5, 1);
+			   psmt.setString(3, member_id);
+			   psmt.setString(4, getDate());
+			   psmt.setString(5, bbsContent);
+			   psmt.setInt(6, 1);
 			   
 			   return psmt.executeUpdate();
 		   }catch (Exception e) {
@@ -114,7 +115,7 @@ public class bbsDAO {
 				   Bbs bbs = new Bbs();
 				   bbs.setBbsID(rs.getInt(1));
 				   bbs.setBbsTitle(rs.getString(2));
-				   bbs.setMem_mail(rs.getString(3));
+				   bbs.setMember_id(rs.getString(3));
 				   bbs.setBbsDate(rs.getString(4));
 				   bbs.setBbsContent(rs.getString(5));
 				   bbs.setBbsAvailable(rs.getInt(6));
@@ -140,7 +141,7 @@ public class bbsDAO {
 				   Bbs bbs = new Bbs();
 				   bbs.setBbsID(rs.getInt(1));
 				   bbs.setBbsTitle(rs.getString(2));
-				   bbs.setMem_mail(rs.getString(3));
+				   bbs.setMember_id(rs.getString(3));
 				   bbs.setBbsDate(rs.getString(4));
 				   bbs.setBbsContent(rs.getString(5));
 				   bbs.setBbsAvailable(rs.getInt(6));
@@ -154,85 +155,6 @@ public class bbsDAO {
 		   return null;
 	   }
 	   
-	  public ArrayList<bbsDTO> selectOne(int bbsID){
-		  ArrayList<bbsDTO> list =  new ArrayList<bbsDTO>();  
-		  getConn();	 
-		  try {
-			  String sql = "select * from BBS where bbsid=?";
-			  conn.prepareStatement(sql);
-			  psmt.setInt(1, bbsID);
-			  rs = psmt.executeQuery();
-			 
-			  if (rs.next()) {
-				  
-				  int bbsid = rs.getInt(1);
-				  String title = rs.getString(2);
-				  String nick = rs.getString(3);
-				  String date = rs.getString(4);
-				  String content = rs.getString(5);
-				  
-				  bbsDTO dto = new bbsDTO(bbsid, title, nick, date, content);
-				  list.add(dto);
-			   }	
-			  
-		} catch (SQLException e) {
-			
-		} finally {
-			close();
-		}
-		  return list;
-	  }
 	  
-	  public int update(int bbsID, String bbsTitle, String bbsContent) {
-		  getConn();
-		   String sql = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
-		   try {
-			   PreparedStatement psmt = conn.prepareStatement(sql);
-			   psmt.setString(1, bbsTitle);
-			   psmt.setString(2, bbsContent);
-			   psmt.setInt(3, bbsID);		   
-			   return psmt.executeUpdate();
-		   }catch (Exception e) {
-			   e.printStackTrace();
-		   }finally {
-			   close();
-		   }
-		return -1;
-	  }
-	  
-	  public int delete(int bbsID) {
-		  getConn();
-		   String sql = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
-		   try {
-			   PreparedStatement psmt = conn.prepareStatement(sql);
-			   psmt.setInt(1, bbsID);			  	   
-			   return psmt.executeUpdate();
-		   }catch (Exception e) {
-			   e.printStackTrace();
-		   }finally {
-			   close();
-		   }
-		return -1;
-	  }
-	  
-	  public String getNick(String mem_mail) {
-		  String bbsNick = null;
-		  getConn();
-		  String sql = "SELECT * FROM GAE_MEMBER where mem_mail=?";
-		  try {
-			  PreparedStatement psmt = conn.prepareStatement(sql);
-			  psmt.setString(1, mem_mail);
-			  rs = psmt.executeQuery();
-			  if(rs.next()) {
-				  bbsNick = rs.getString(4);
-			  }
-			  
-		  }catch (Exception e) {
-			  e.printStackTrace();
-		  }finally {
-			  close();
-		  }
-		return bbsNick;
-	  }
 }
 

@@ -9,3 +9,18 @@ create table  Members(
 	
 );
 select * from Members;
+
+
+drop table BBS;
+
+create table BBS(
+	bbsID number,
+	bbsTitle varchar2(80),
+	bbsContent varchar2(1000),
+	bbsDate date,
+	bbsHit number,
+	member_id varchar2(20),
+	constraint bbsid_pk primary key(bbsID)
+);
+
+select * from BBS;

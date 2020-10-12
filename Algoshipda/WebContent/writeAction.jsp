@@ -1,56 +1,68 @@
-<%@page import="bbs.bbsDAO"%>
+<%@page import="bbs.BbsDAO"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="com.model.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
+<jsp:setProperty name="bbs" property="bbsTitle" />
+<jsp:setProperty name="bbs" property="bbsContent" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 	<%
-			MemberDTO info = (MemberDTO) session.getAttribute("info");
-		%> 
+		MemberDTO info = (MemberDTO) session.getAttribute("info");
+		
+	%>
+		
+
 	<%
-		String mem_mail = null;
-		if (session.getAttribute("mem_mail") != null) {
-			mem_mail = (String) session.getAttribute("mem_mail");
-		}
-		if (info == null) {
+		String member_id = null;
+	if (session.getAttribute("member_id") != null) {
+		member_id = (String) session.getAttribute("member_id");
+	}
+	
+	System.out.print(bbs.getBbsTitle());
+	System.out.print(bbs.getBbsContent());
+	
+	if (info == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('ë¡œê·¸ì¸ì„ í•˜ì„¸ìš”.')");
+		script.println("location.href = 'Login_form.jsp'");
+		script.println("</script>");
+	} else {
+		if (bbs.getBbsTitle() == null || bbs.getBbsContent() == null) {
+			System.out.print(bbs.getBbsTitle());
+			System.out.print(bbs.getBbsContent());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('·Î±×ÀÎÀ» ÇÏ¼¼¿ä.')");
-			script.println("location.href = 'main.jsp'");
+			script.println("alert('ì…ë ¥ì´ ì•ˆ ëœ ì‚¬í•­ì´ ìˆìŠµë‹ˆë‹¤.')");
+			script.println("history.back()");
 			script.println("</script>");
-		}else {
-			if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null) {
+		} else {
+			bbs.BbsDAO bbsDAO = new bbs.BbsDAO();
+			int result = bbsDAO.write(bbs.getBbsTitle(), member_id, bbs.getBbsContent());
+			
+			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('ÀÔ·ÂÀÌ ¾È µÈ »çÇ×ÀÌ ÀÖ½À´Ï´Ù.')");
+				script.println("alert('ê¸€ì“°ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.')");
 				script.println("history.back()");
 				script.println("</script>");
-			}else {
-				bbsDAO bbsDAO = new bbsDAO();
-				int result = bbsDAO.write(bbs.getBbsTitle(), info.getMem_mail(), bbs.getBbsContent());
-				if(result == -1) {
-					PrintWriter script = response.getWriter();
-					script.println("<script>");
-					script.println("alert('±Û¾²±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.')");
-					script.println("history.back()");
-					script.println("</script>");
-				}else {
-					PrintWriter script = response.getWriter();
-					script.println("<script>");
-					script.println("location.href = 'board_cat.jsp'");
-					script.println("</script>");
-				}
+			} else {
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("location.href = 'board_cat.jsp'");
+				script.println("</script>");
 			}
 		}
-		
-			
+	}
 	%>
 </body>
 </html>
