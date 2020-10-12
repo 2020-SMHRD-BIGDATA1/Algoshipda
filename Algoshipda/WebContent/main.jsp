@@ -3,6 +3,7 @@
 <%@page import="com.model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,32 +26,31 @@
 <script src="jquery-3.5.1.min.js"></script>
 <link href="./main.3f6952e4.css" rel="stylesheet">
 <script type="text/javascript">
-function idCheck() {
-    id = document.getElementById("in_id");
-    
-    $.ajax({
-         type :"get" ,  //get or post방식
-         //QueryString 방식으로 전송 : ?(시작) member_id(이름값) + member_id.value(실제 변수값)
-         url : "idCheck?member_id=" + member_id.value,  //서버 페이지의 주소
-         dataType : "text",  //주고받을 데이터의 유형
-         success : function(data) {
-            
-            p1 = document.getElementById("p1");
-            
-            if (data=='true') {
-             p1.innerHTML = "사용할 수 없는 아이디입니다.";
-          }else {
-             p1.innerHTML = "사용할 수 있는 아이디입니다.";
-          }
-         
+	function idCheck() {
+		id = document.getElementById("in_id");
 
-         },
-         error : function() {
-          //서버와 통신이 실패했을 때 후 처리
-             alert("호출실패");
-         }
-      });
- } 
+		$.ajax({
+			type : "get", //get or post방식
+			//QueryString 방식으로 전송 : ?(시작) member_id(이름값) + member_id.value(실제 변수값)
+			url : "idCheck?member_id=" + member_id.value, //서버 페이지의 주소
+			dataType : "text", //주고받을 데이터의 유형
+			success : function(data) {
+
+				p1 = document.getElementById("p1");
+
+				if (data == 'true') {
+					p1.innerHTML = "사용할 수 없는 아이디입니다.";
+				} else {
+					p1.innerHTML = "사용할 수 있는 아이디입니다.";
+				}
+
+			},
+			error : function() {
+				//서버와 통신이 실패했을 때 후 처리
+				alert("호출실패");
+			}
+		});
+	}
 </script>
 <style>
 #pp {
@@ -94,8 +94,8 @@ function idCheck() {
 
 						<li><a href="./works.html" title="">Board</a></li>
 						<li><a href="./about.html" title="">about</a></li>
-						
-						
+
+
 						<%
 							if (info == null) {
 						%>
@@ -104,7 +104,7 @@ function idCheck() {
 						<%
 							} else {
 						%>
-						
+
 						<li><a href="LogoutService">Logout</a></li>
 						<li><a href="form_mypage.jsp">MyPage</a></li>
 
